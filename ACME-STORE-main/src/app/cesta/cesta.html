@@ -1,0 +1,102 @@
+<div class="container my-4" style="max-width: 900px;">
+
+    <!-- Cabeçalho -->
+    <div
+        class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 mb-4 border-bottom pb-3 border-dark">
+        <div>
+            <h2 class="text-uppercase fw-bold m-0" style="font-size: 20px; color: #333230;">Cesta de Compras ACME</h2>
+            <small class="text-muted" style="font-size: 11px;">Revise seus explosivos antes de finalizar a
+                encomenda.</small>
+        </div>
+        <a routerLink="/" class="btn btn-outline-dark btn-sm text-uppercase fw-bold" style="font-size: 10px;">← Voltar à
+            Vitrine</a>
+    </div>
+
+    @if (detonado) {
+    <!-- Estado Detonado / Finalizado -->
+    <div class="text-center py-5 border border-dark border-2 p-4" style="background-color: #f8f6f0;">
+        <h3 class="text-uppercase fw-bold text-danger mb-2" style="font-size: 20px;">BOOM! Encomenda Despachada 🧨</h3>
+        <p class="text-muted small mb-3">A catapulta expressa já está a mirar o seu quintal. Prepare o capacete.</p>
+        <a routerLink="/" class="btn btn-dark text-uppercase fw-bold px-4 py-2" style="font-size: 11px;">Voltar à
+            Vitrine</a>
+    </div>
+    } @else if (itensNaCesta.length === 0) {
+    <!-- Estado Vazio -->
+    <div class="text-center py-5 border border-dark border-2 p-4" style="background-color: #f8f6f0;">
+        <h4 class="text-uppercase fw-bold text-muted mb-2" style="font-size: 18px;">Sua cesta está vazia</h4>
+        <p class="text-muted small mb-3">Parece que o Coiote ainda não encomendou nenhuma armadilha hoje.</p>
+        <a routerLink="/" class="btn btn-dark text-uppercase fw-bold px-4 py-2" style="font-size: 11px;">Ir às
+            Compras</a>
+    </div>
+    } @else {
+    <!-- Lista e Resumo empilhados em mobile -->
+    <div class="row g-3">
+
+        <!-- Itens da Cesta -->
+        <div class="col-12 col-lg-8">
+            <div class="d-flex flex-column gap-2">
+                @for (item of itensNaCesta; track item.produto.id) {
+                <div class="card shadow-sm border-dark p-2 p-sm-3 d-flex flex-row align-items-center justify-content-between gap-2"
+                    style="background-color: #f8f6f0;">
+                    <div class="d-flex align-items-center gap-2">
+                        <img [src]="item.produto.imagem" [alt]="item.produto.nome"
+                            style="width: 50px; height: 50px; object-fit: cover;" class="border border-dark">
+                        <div>
+                            <h6 class="fw-bold text-uppercase m-0" style="font-size: 13px;">{{ item.produto.nome }}</h6>
+                            <small class="text-muted" style="font-size: 10px;">{{ item.produto.codigo }} | Qtd: {{
+                                item.quantidade }}</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="fw-bold fs-6 text-dark" style="font-size: 14px;">{{ brl(item.produto.preco *
+                            item.quantidade) }}</span>
+                        <button (click)="removerItem(item.produto.id)"
+                            class="btn btn-outline-danger btn-sm fw-bold px-2 py-1" style="font-size: 11px;"
+                            title="Remover">✕</button>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Resumo do Pedido / Frete -->
+        <div class="col-12 col-lg-4">
+            <div class="card border-dark p-3 shadow-sm" style="background-color: #f8f6f0;">
+                <h5 class="fw-bold text-uppercase mb-3 border-bottom pb-2 border-dark" style="font-size: 15px;">Resumo
+                    do Pedido</h5>
+
+                <div class="d-flex justify-content-between mb-2 small" style="font-size: 13px;">
+                    <span class="text-muted">Subtotal:</span>
+                    <span class="fw-bold">{{ brl(subtotal) }}</span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold small text-uppercase mt-1" style="font-size: 11px;">Opção de
+                        Frete:</label>
+                    <select class="form-control border-dark form-select form-select-sm" [(ngModel)]="freteSelecionadoId"
+                        style="font-size: 12px;">
+                        @for (f of opcoesFrete; track f.id) {
+                        <option [value]="f.id">{{ f.nome }} ({{ brl(f.preco) }})</option>
+                        }
+                    </select>
+                    <small class="text-muted d-block mt-1" style="font-size: 9px;" *ngIf="freteAtual">
+                        {{ freteAtual.prazo }} - {{ freteAtual.nota }}
+                    </small>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3 pt-2 border-top border-dark">
+                    <span class="fw-bold text-uppercase" style="font-size: 13px;">Total:</span>
+                    <span class="fw-bold fs-5 text-danger">{{ brl(total) }}</span>
+                </div>
+
+                <button (click)="explodirCarrinho()" class="btn text-uppercase fw-bold w-100 shadow-sm py-2"
+                    style="background-color: #d97706; color: #fff; font-size: 11px;">
+                    Finalizar Encomenda 🧨
+                </button>
+            </div>
+        </div>
+
+    </div>
+    }
+</div>

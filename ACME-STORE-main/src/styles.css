@@ -1,0 +1,49 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Configurações Globais de Responsividade */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2efe9;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Evita scroll horizontal indesejado */
+}
+
+/* Imagens fluidas em todo o projeto */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Campos de formulário responsivos e confortáveis em touch */
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+/* Utilitário padrão e compatível para truncar textos em várias linhas (ex: 2 linhas no slogan) */
+.text-clamp-2 {
+    display: -webkit-box;
+    display: box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+}
+
+.text-clamp-3 {
+    display: -webkit-box;
+    display: box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+}

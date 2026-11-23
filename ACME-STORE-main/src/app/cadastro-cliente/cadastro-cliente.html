@@ -1,0 +1,51 @@
+<div class="container my-5" style="max-width: 700px;">
+    <div class="card shadow-sm border-dark p-4" style="background-color: #f8f6f0;">
+
+        <!-- Cabeçalho -->
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2 border-dark">
+            <div>
+                <h2 class="text-uppercase fw-bold m-0" style="font-size: 20px; color: #333230;">Registo de Cliente ACME
+                </h2>
+                <small class="text-muted">Essencial para o envio de explosivos via Catapulta Expressa.</small>
+            </div>
+            <a routerLink="/" class="btn btn-outline-dark btn-sm text-uppercase fw-bold">← Voltar</a>
+        </div>
+
+        <!-- Formulário com Bootstrap -->
+        <form (submit)="salvarCliente($event)">
+
+            <div class="mb-3">
+                <label for="nome" class="form-label fw-bold small text-uppercase">Nome do Cliente</label>
+                <input type="text" class="form-control border-dark" id="nome" [(ngModel)]="novoCliente.nome" name="nome"
+                    placeholder="Ex: Wile E. Coyote (Super Genídio)" required>
+                <div class="form-text">Não nos responsabilizamos se o nome for usado em penhascos.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label fw-bold small text-uppercase">E-mail Corporativo</label>
+                <input type="email" class="form-control border-dark" id="email" [(ngModel)]="novoCliente.email"
+                    name="email" placeholder="Ex: coiote.super.genio&#64;acme-corp.deserto" required>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="telefone" class="form-label fw-bold small text-uppercase">Telefone / Sinal de
+                        Fumaça</label>
+                    <input type="text" class="form-control border-dark" id="telefone" [(ngModel)]="novoCliente.telefone"
+                        name="telefone" placeholder="Ex: (00) 99999-BUM!" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cpf" class="form-label fw-bold small text-uppercase">CPF</label>
+                    <input type="text" class="form-control border-dark" id="cpf" [(ngModel)]="novoCliente.cpf"
+                        name="cpf" placeholder="Ex: 000.000.000-01 (Isento por queda livre)" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn text-uppercase fw-bold w-100 mt-3 shadow-sm"
+                style="background-color: #d97706; color: #fff; padding: 12px;">
+                Cadastrar na ACME (Por sua conta e risco)
+            </button>
+
+        </form>
+    </div>
+</div>

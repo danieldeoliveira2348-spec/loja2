@@ -1,0 +1,34 @@
+<div style="padding: 20px; font-family: Arial, sans-serif;">
+    <h2>Meus Pedidos ACME</h2>
+    <p>Acompanhe o status das suas engenhocas encomendadas.</p>
+
+    @if (pedidos.length === 0) {
+    <p>Nenhum pedido registrado até o momento.</p>
+    } @else {
+    <table border="1" cellpadding="10" cellspacing="0"
+        style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th>ID do Pedido</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (pedido of pedidos; track pedido.id) {
+            <tr>
+                <td>#{{ pedido.id }}</td>
+                <td>{{ pedido.data }}</td>
+                <td><strong>{{ pedido.status }}</strong></td>
+                <td>R$ {{ pedido.total.toFixed(2) }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
+
+    <div style="margin-top: 20px;">
+        <a routerLink="/" style="text-decoration: none; color: blue;">← Voltar para a Vitrine</a>
+    </div>
+</div>

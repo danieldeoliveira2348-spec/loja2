@@ -1,0 +1,19 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { VitrineComponent } from './vitrine/vitrine'; // Ajuste o caminho se necessário
+
+@Component({
+selector: 'app-root',
+standalone: true,
+imports: [CommonModule, RouterOutlet, VitrineComponent],
+template: `
+<!-- Aqui exibe o layout principal com a vitrine ou rotas -->
+<app-vitrine></app-vitrine>
+<router-outlet></router-outlet>
+`,
+styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+title = 'acme-store';
+}

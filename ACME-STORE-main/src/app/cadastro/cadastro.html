@@ -1,0 +1,59 @@
+<div class="container my-5" style="max-width: 800px;">
+    <div class="card shadow-sm border-dark p-4" style="background-color: #f8f6f0;">
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2 border-dark">
+            <h2 class="text-uppercase fw-bold m-0" style="font-size: 22px; color: #333230;">Registar Novo Produto ACME
+            </h2>
+            <a routerLink="/" class="btn btn-outline-dark btn-sm text-uppercase fw-bold">← Voltar à Vitrine</a>
+        </div>
+
+        <form (submit)="salvarProduto($event)">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="codigo" class="form-label fw-bold small text-uppercase">Código</label>
+                    <input type="text" class="form-control border-dark" id="codigo" [(ngModel)]="novoProduto.codigo"
+                        name="codigo" placeholder="Ex: ACM-009" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="nome" class="form-label fw-bold small text-uppercase">Nome do Produto</label>
+                    <input type="text" class="form-control border-dark" id="nome" [(ngModel)]="novoProduto.nome"
+                        name="nome" placeholder="Ex: Íman Antigravidade" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="slogan" class="form-label fw-bold small text-uppercase">Slogan / Descrição Curta</label>
+                <input type="text" class="form-control border-dark" id="slogan" [(ngModel)]="novoProduto.slogan"
+                    name="slogan" placeholder="Ex: Atrai o que você quiser" required>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="preco" class="form-label fw-bold small text-uppercase">Preço (R$)</label>
+                    <input type="number" step="0.01" class="form-control border-dark" id="preco"
+                        [(ngModel)]="novoProduto.preco" name="preco" placeholder="0.00" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="categoria" class="form-label fw-bold small text-uppercase">Categoria</label>
+                    <select class="form-control border-dark" id="categoria" [(ngModel)]="novoProduto.categoria"
+                        name="categoria">
+                        <option value="Explosivos">Explosivos</option>
+                        <option value="Gravidade">Gravidade</option>
+                        <option value="Propulsão">Propulsão</option>
+                        <option value="Iscas & Armadilhas">Iscas & Armadilhas</option>
+                        <option value="Ilusões">Ilusões</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="perigo" class="form-label fw-bold small text-uppercase">Nível de Perigo (1-5)</label>
+                    <input type="number" class="form-control border-dark" id="perigo" min="1" max="5"
+                        [(ngModel)]="novoProduto.perigo" name="perigo">
+                </div>
+            </div>
+
+            <button type="submit" class="btn text-uppercase fw-bold w-100 mt-3"
+                style="background-color: #d97706; color: #fff; padding: 10px;">
+                Salvar Produto na ACME
+            </button>
+        </form>
+    </div>
+</div>
