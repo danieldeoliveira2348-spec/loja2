@@ -31,7 +31,10 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": []
+              "allowedHosts": [
+                "localhost",
+                "*.app.github.dev"
+              ]
             },
             "ssr": {
               "entry": "src/server.ts"
@@ -63,6 +66,12 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [
+              "localhost",
+              "*.app.github.dev"
+            ]
+          },
           "configurations": {
             "production": {
               "buildTarget": "acme-store:build:production"

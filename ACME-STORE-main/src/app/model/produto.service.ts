@@ -18,7 +18,7 @@ interface ProdutoApi {
 })
 export class ProdutoService {
     private http = inject(HttpClient);
-    private readonly baseUrl = 'http://localhost:8081/api';
+    private readonly baseUrl = 'https://fantastic-capybara-g4gxrq5x6q4gc9ppx-8081.app.github.dev/api';
 
     readonly categorias = [
         "Todos",
